@@ -1,0 +1,150 @@
+body
+{
+	font-size: 12px;
+	font-family: "Lucida Grande", "Calibri", Verdana, Arial, sans-serif;
+	background: #DFE8F3  url('../images/bodybg.gif') repeat-x;
+}
+#container
+{
+	width: 600px;
+	border: 10px solid #5A7497;
+	background-color: #ffffff;
+	margin: auto;
+	
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	border-radius: 6px;
+}
+#header
+{
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-bottom: 1px solid #5A7497;
+	background: url('../images/headerbg.gif') repeat-x;
+}
+#logo
+{
+	margin-left: 50px;
+	margin-top: 1px;
+	vertical-align: bottom;
+}
+#nav
+{
+	list-style-type: none;
+	float: right;
+	margin: 0;
+	padding: 0;
+}
+#nav a
+{
+	display: inline-block;
+	color: inherit;
+	text-decoration: none;
+	padding: 20px;
+	text-align: center;
+}
+#nav li
+{
+	display: inline-block;
+}
+
+#main
+{
+	margin: 10px;
+}
+#main a
+{
+	color: black;
+}
+#main .section, #main .success
+{
+	padding: 10px;
+	background-color: #ECF2F7;
+	border: 1px solid #C2D2E2;
+}
+#main .success
+{
+	text-align: center;
+	margin-bottom: 10px;
+	font-size: 14px;
+	font-weight: bold;
+}
+#main .section .section_header
+{
+	line-height: 15px;
+}
+#main .section .section_header h1
+{
+	font-size: 17px;
+	margin-bottom: 4px;
+}
+#main .section .section_header p
+{
+	border-bottom: 1px solid #C2D2E2;
+	color: #666;
+	text-indent: 0;
+	margin: 0;
+	padding: 0;
+	padding-bottom: 5px;
+	font-size: 13px;
+	font-weight: bold;
+
+}
+#main .section p
+{
+	text-align: justify;
+	text-indent: 15px;
+}
+.clearer
+{
+	clear: both;
+}
+#footer
+{
+	border-top: 1px dashed #C2D2E2;
+	text-align: right;
+	font-size: 11px;
+	margin: 5px;
+}
+.titlebar
+{
+	color: #FFFFFF;
+	font: 15px "Arial";
+	font-weight: bold;
+	text-transform: capitalize;
+	margin-top: 20px;
+	padding-left: 10px;
+	background: url('../images/headerbg.gif') repeat-x;
+	border: 1px solid #63839F;
+	height: 30px;
+	line-height: 30px;
+	text-align: left;
+}
+
+a img
+{
+	border: 0;
+}
+
+/* Exception Formatting */
+div.exception
+{
+	border: 1px solid black;
+	background-color: #CFA8A8;
+}
+.exception .exception_title
+{
+	font: 14px "Verdana";
+	padding: 5px;
+	border-bottom: 1px solid black;
+	background-color: #EFE0E0;
+}
+.exception .exception_info
+{
+	padding: 10px;
+}
+.exception .exception_stack
+{
+	margin-top: 10px;
+}
