@@ -33,14 +33,22 @@ class Setup
 	 */
 	public function doSetup($registry)
 	{
+        session_start();
+        
+        $serviceFactory = new \OAuth\ServiceFactory();
+        
+        $storage = new \OAuth\Common\Storage\Session();
+        
+        // Setup the credentials for the requests
+        $credentials = new \OAuth\Common\Consumer\Credentials(
+            $_SERVER["FITBIT_CLIENT"],
+            $_SERVER["FITBIT_SECRET"],
+            $registry->utils->makeLink("Login", "callback")
+        );
+        $registry->fitbitService = $serviceFactory->createService('FitBit', $credentials, $storage);
+        
         $cfg = new \Spot\Config();
-        $cfg->addConnection('mysql', 'mysql://USERNAME:PASSWORD@HOSTNAME/DATABASE');
+        $cfg->addConnection('mysql', $_SERVER["DB_DSN"]);
         $registry->mapper = new \Spot\Mapper($cfg);
-
-        $auth = \Saros\Auth::getInstance();
-
-        $authAdapter = new \Saros\Auth\Adapter\Spot\Plain($registry->mapper, '\Application\Entities\Users', "username", "password");
-
-        $auth->setAdapter($authAdapter);
 	}
 }

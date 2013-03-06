@@ -1,4 +1,6 @@
 <div class="titlebar">Welcome</div>
 <div>
-You are using Saros Framework V<?php echo $this->Version ?>
+<p>
+    <a href="<?= $this->Uri ?>">Login with FitBit!</a>
+</p>
 </div>

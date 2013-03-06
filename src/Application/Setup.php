@@ -29,13 +29,19 @@ class Setup
 	 * Sets some settings for the application
 	 */
 	static function doSetup($registry)
-	{
+	{    
         // Lets turn on error reporting
         error_reporting(E_ALL|E_STRICT);
         ini_set('display_errors', 'on');
+           
+        if (isset($_SERVER["PRODUCTION"]) && $_SERVER["PRODUCTION"]) {
+            // Production mode, turn off ALL errors
+            error_reporting(0);
+            ini_set('display_errors', '0');
+        }
 
 		// Set up our config values
-		$registry->config->siteUrl = "";
+		$registry->config->siteUrl = $_SERVER["ROOT"];
 		$registry->config->rewriting = true;
                         
 		// Set the default theme

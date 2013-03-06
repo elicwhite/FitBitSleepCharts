@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Saros Framework</title>
-	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo $this->getWebRoot() ?>images/favicon.ico" />
 	<?php echo $this->headStyles()->appendFile("css/main.css") ?>
 	<?php echo $this->headScripts() ?>
 </head>
@@ -18,5 +18,6 @@
             <?php echo \Spot\Log::queryCount() ?> Queries
 		</div>
 	</div>
+    <pre><?php print_r($_SESSION) ?></pre>
 </body>
 </html>
