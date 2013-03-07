@@ -1,5 +1,5 @@
 {
-    "hash": "269258ecbb4a560821221f5954108f51",
+    "hash": "5758cc5ff33e9714b5b057c54d554016",
     "packages": [
         {
             "name": "lusitanian/oauth",
@@ -151,9 +151,7 @@
             "time": "2013-02-25 17:44:57"
         }
     ],
-    "packages-dev": [
-
-    ],
+    "packages-dev": null,
     "aliases": [
 
     ],
