@@ -1,6 +1,11 @@
-<div class="titlebar">Welcome</div>
+<div class="titlebar">
+    Welcome
+</div>
+
 <div>
-<p>
-    <a href="<?= $this->Uri ?>">Login with FitBit!</a>
-</p>
+    <pre>
+    <?php
+       print_r($this->Data);
+    ?>
+    </pre>
 </div>

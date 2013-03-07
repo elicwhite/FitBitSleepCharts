@@ -15,13 +15,7 @@ class Index extends \Saros\Application\Controller
         $this->personal = $result->{"user"};
     }
 
-    public function indexAction()
-    {
-        $this->view->Uri = $GLOBALS["registry"]->utils->makeLink("Login", "index");
-    }
-
-    public function infoAction() {
-
+    public function indexAction() {
         // Send a request now that we have access token
         $this->view->Data = $this->personal;
     }
@@ -92,5 +86,40 @@ class Index extends \Saros\Application\Controller
                 return $sleep;
             }
         }
+    }
+
+    public function graphAction() {
+
+    }
+
+    public function getSleepJsonAction($day = false){
+        header('Content-type: application/json');
+
+        $this->view->show(false);
+        $dayEntity = $this->registry->mapper->first(
+            '\Application\Entities\SleepDays',
+            array (
+                "userid" => $this->personal->{"encodedId"},
+                "day" => "2013-03-06"
+            )
+        );
+
+        $array = array();
+
+        foreach($dayEntity->minutes as $minute) {
+            $obj = new \stdClass();
+            $obj->x = strtotime($minute->minute);
+            $obj->y = $minute->value;
+
+            $array[] = $obj;
+        }
+        $series = new \stdClass();
+        $series->name = "Sleep";
+        $series->data = $array;
+
+        $wrapper = array();
+        $wrapper[] = $series;
+
+        echo json_encode($wrapper);
     }
 }
