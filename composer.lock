@@ -1,5 +1,5 @@
 {
-    "hash": "2e99d581f59be924c4a8d299a7acd777",
+    "hash": "269258ecbb4a560821221f5954108f51",
     "packages": [
         {
             "name": "lusitanian/oauth",
@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Lusitanian/PHPoAuthLib.git",
-                "reference": "3ac1dceff85a53fd461c9c6028c27a1e337b61f6"
+                "reference": "c9700d3bcb344de0561998409998b79f70db6e17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lusitanian/PHPoAuthLib/zipball/3ac1dceff85a53fd461c9c6028c27a1e337b61f6",
-                "reference": "3ac1dceff85a53fd461c9c6028c27a1e337b61f6",
+                "url": "https://api.github.com/repos/Lusitanian/PHPoAuthLib/zipball/c9700d3bcb344de0561998409998b79f70db6e17",
+                "reference": "c9700d3bcb344de0561998409998b79f70db6e17",
                 "shasum": ""
             },
             "require": {
@@ -56,7 +56,7 @@
                 "source": "https://github.com/Lusitanian/PHPoAuthLib/tree/master",
                 "issues": "https://github.com/Lusitanian/PHPoAuthLib/issues"
             },
-            "time": "2013-03-06 01:22:56"
+            "time": "2013-03-07 03:36:02"
         },
         {
             "name": "thesavior/Saros",
@@ -64,12 +64,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/TheSavior/Saros-Framework.git",
-                "reference": "5885e7033e9f8ccec4cf6daed688131049657479"
+                "reference": "5d136b8da773dfc3bf2d5d5fe9de79160711d913"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TheSavior/Saros-Framework/zipball/5885e7033e9f8ccec4cf6daed688131049657479",
-                "reference": "5885e7033e9f8ccec4cf6daed688131049657479",
+                "url": "https://api.github.com/repos/TheSavior/Saros-Framework/zipball/5d136b8da773dfc3bf2d5d5fe9de79160711d913",
+                "reference": "5d136b8da773dfc3bf2d5d5fe9de79160711d913",
                 "shasum": ""
             },
             "require": {
@@ -102,7 +102,7 @@
                 "source": "https://github.com/TheSavior/Saros-Framework/tree/master",
                 "issues": "https://github.com/TheSavior/Saros-Framework/issues"
             },
-            "time": "2013-03-03 11:10:48"
+            "time": "2013-03-06 19:18:18"
         },
         {
             "name": "vlucas/Spot",

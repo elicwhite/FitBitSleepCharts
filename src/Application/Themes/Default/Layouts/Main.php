@@ -11,13 +11,12 @@
 	<div id="container">
 		<div id="main">
 			<?php
-            echo $this->content() 
+            echo $this->content()
             ?>
 		</div>
 		<div id="footer">
             <?php echo \Spot\Log::queryCount() ?> Queries
 		</div>
 	</div>
-    <pre><?php print_r($_SESSION) ?></pre>
 </body>
 </html>
