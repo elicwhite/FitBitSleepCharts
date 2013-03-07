@@ -89,20 +89,49 @@ class Index extends \Saros\Application\Controller
     }
 
     public function graphAction() {
+        $dayEntity = $this->registry->mapper->all(
+            '\Application\Entities\SleepDays',
+            array ("userid" => $this->personal->{"encodedId"})
+        )
+        ->order(array("day" => "DESC"))
+        ->limit(6);
 
+        $days = array();
+        foreach ($dayEntity as $day) {
+            $days[] = $day->day;
+        }
+
+        $this->view->Days = $days;
     }
 
     public function getSleepJsonAction($day = false){
         header('Content-type: application/json');
+        if (!$day) {
+            die("invalid request");
+        }
 
         $this->view->show(false);
+
+        // Quick and simple cache
+        $session = new \Saros\Session("jsonData");
+        if (isset($session[$day]))
+        {
+            echo $session[$day];
+            return;
+        }
+
         $dayEntity = $this->registry->mapper->first(
             '\Application\Entities\SleepDays',
             array (
                 "userid" => $this->personal->{"encodedId"},
-                "day" => "2013-03-06"
+                "day" => $day
             )
         );
+
+        // Should throw an error code
+        if (!$dayEntity) {
+            die("invalid day");
+        }
 
         $array = array();
 
@@ -120,6 +149,10 @@ class Index extends \Saros\Application\Controller
         $wrapper = array();
         $wrapper[] = $series;
 
-        echo json_encode($wrapper);
+        $result = json_encode($wrapper);
+
+        $session[$day] = $result;
+
+        echo $result;
     }
 }
