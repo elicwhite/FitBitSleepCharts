@@ -1,0 +1,28 @@
+.box-with-info {
+    position: relative;
+    padding: 15px 30px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin: 15px 0;
+}
+
+.box-with-info .progress {
+    margin-bottom: 5px;
+}
+
+.box-with-info-info {
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.box-with-info + .box-with-info-info {
+    margin-top: -20px;
+    padding-top: 15px;
+}

@@ -1,8 +1,18 @@
+.sleepDay {
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+.sleepInfo {
+    float: left;
+    width: 300px;
+}
+
 .chart_container {
     font-family: Arial, Helvetica, sans-serif;
     padding-bottom: 24px;
     width: 500px;
-    margin: auto;
+    float:left;
 }
 
 .rickshaw_graph .detail .x_label {

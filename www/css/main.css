@@ -6,11 +6,11 @@ body
 }
 #container
 {
-	width: 600px;
+	width: 900px;
 	border: 10px solid #5A7497;
 	background-color: #ffffff;
 	margin: auto;
-	
+
 	-moz-border-radius: 15px;
 	-webkit-border-radius: 6px;
 	-khtml-border-radius: 6px;
@@ -127,24 +127,4 @@ a img
 	border: 0;
 }
 
-/* Exception Formatting */
-div.exception
-{
-	border: 1px solid black;
-	background-color: #CFA8A8;
-}
-.exception .exception_title
-{
-	font: 14px "Verdana";
-	padding: 5px;
-	border-bottom: 1px solid black;
-	background-color: #EFE0E0;
-}
-.exception .exception_info
-{
-	padding: 10px;
-}
-.exception .exception_stack
-{
-	margin-top: 10px;
-}
+

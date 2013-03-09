@@ -3,21 +3,38 @@ namespace Application\Modules\Main\Controllers;
 
 class Index extends \Saros\Application\Controller
 {
-    private $personal;
+    private $storage;
 
     public function init() {
-        if(!$GLOBALS["registry"]->fitbitService->getStorage()->hasAccessToken()) {
+        $this->storage = $GLOBALS["registry"]->fitbitService->getStorage();
+
+        if(!$this->storage->hasAccessToken()) {
             // If they aren't signed in, redirect them
             $this->redirect($GLOBALS["registry"]->utils->makeLink("Login", "index"));
         }
 
-        $result = json_decode( $GLOBALS["registry"]->fitbitService->request( 'user/-/profile.json') );
-        $this->personal = $result->{"user"};
+        if (!isset($this->storage["personal"]))
+        {
+            $result = json_decode( $GLOBALS["registry"]->fitbitService->request( 'user/-/profile.json') );
+            $this->storage["personal"] = $result->{"user"};
+        }
+
     }
 
     public function indexAction() {
         // Send a request now that we have access token
-        $this->view->Data = $this->personal;
+        $mostRecent = $this->registry->mapper->select('\Application\Entities\SleepDays')
+            ->where(array("userid" => $this->storage["personal"]->{"encodedId"}))
+            ->order(array("day" => "DESC"))
+            ->limit(1);
+
+        $this->view->LastDay = $mostRecent->execute()[0]->day;
+
+        $this->view->Data = $this->storage["personal"];
+    }
+
+    public function updateAction() {
+        $this->getSleepAction();
     }
 
     public function getSleepAction() {
@@ -36,7 +53,7 @@ class Index extends \Saros\Application\Controller
                 $current = $this->registry->mapper->first(
                     '\Application\Entities\SleepDays',
                     array (
-                        "userid" => $this->personal->{"encodedId"},
+                        "userid" => $this->storage["personal"]->{"encodedId"},
                         "day" => $dayData->{"dateTime"}
                     )
                 );
@@ -50,7 +67,7 @@ class Index extends \Saros\Application\Controller
                     $dayId = $GLOBALS["registry"]->mapper->insert(
                         '\Application\Entities\SleepDays',
                         array(
-                            "userid" => $this->personal->{"encodedId"},
+                            "userid" => $this->storage["personal"]->{"encodedId"},
                             "day" => $dayData->{"dateTime"},
                             "awakeningsCount" => $detailed->{"awakeningsCount"},
                             "timeInBed" => $detailed->{"timeInBed"},
@@ -91,7 +108,7 @@ class Index extends \Saros\Application\Controller
     public function graphAction() {
         $dayEntity = $this->registry->mapper->all(
             '\Application\Entities\SleepDays',
-            array ("userid" => $this->personal->{"encodedId"})
+            array ("userid" => $this->storage["personal"]->{"encodedId"})
         )
         ->order(array("day" => "DESC"))
         ->limit(6);
@@ -123,7 +140,7 @@ class Index extends \Saros\Application\Controller
         $dayEntity = $this->registry->mapper->first(
             '\Application\Entities\SleepDays',
             array (
-                "userid" => $this->personal->{"encodedId"},
+                "userid" => $this->storage["personal"]->{"encodedId"},
                 "day" => $day
             )
         );
@@ -154,5 +171,10 @@ class Index extends \Saros\Application\Controller
         $session[$day] = $result;
 
         echo $result;
+    }
+
+    public function logoutAction() {
+        $this->storage->clear();
+        $this->redirect($GLOBALS["registry"]->utils->makeLink("Index"));
     }
 }
