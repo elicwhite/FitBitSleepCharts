@@ -26,3 +26,13 @@
     margin-top: -20px;
     padding-top: 15px;
 }
+
+ul.log {
+    list-style-type: none;
+}
+
+/*
+div[data-updater='success'] .alert {
+    margin-bottom: 0;
+}
+*/

@@ -4,7 +4,7 @@
         <title>FitBit Sleep Charts</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="shortcut icon" type="image/x-icon" href="<?php echo $this->getWebRoot() ?>images/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="<?php echo $this->getWebRoot() ?>favicon.ico" />
         <script type="text/javascript">
             var ROOT_URL = "<?php echo $GLOBALS['registry']->config["siteUrl"]?>";
         </script>
@@ -18,7 +18,9 @@
             ->appendFile("css/charts.css");
              ?>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <?php echo $this->headScripts()->appendFile("bootstrap/js/bootstrap.min.js")
+        <?php echo $this->headScripts()
+            ->appendFile("js/globals.php")
+            ->appendFile("bootstrap/js/bootstrap.min.js")
             ->appendFile("js/d3.min.js")
             ->appendFile("js/d3.layout.min.js")
             ->appendFile("js/rickshaw.min.js")
@@ -35,7 +37,7 @@
                             <ul class="nav">
                                 <li class="active"><a href="<?php echo $GLOBALS["registry"]->utils->makeLink("Index")?>">Home</a></li>
                                 <li><a href="<?php echo $GLOBALS["registry"]->utils->makeLink("Index", "update")?>">Update</a></li>
-                                <li><a href="<?php echo $GLOBALS["registry"]->utils->makeLink("Index", "chart")?>">Chart</a></li>
+                                <li><a href="<?php echo $GLOBALS["registry"]->utils->makeLink("Index", "graph")?>">Chart</a></li>
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Contact</a></li>
                                 <li><a href="<?php echo $GLOBALS["registry"]->utils->makeLink("Index", "logout")?>">Logout</a></li>

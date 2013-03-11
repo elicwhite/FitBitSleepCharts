@@ -13,7 +13,7 @@ class Login extends \Saros\Application\Controller
     public function init() {
         if($GLOBALS["registry"]->fitbitService->getStorage()->hasAccessToken()) {
             // If they aren't signed in, redirect them
-            $this->redirect($GLOBALS["registry"]->utils->makeLink("Index"));
+            //$this->redirect($GLOBALS["registry"]->utils->makeLink("Index"));
         }
 
         $this->fitbitService = $GLOBALS["registry"]->fitbitService;

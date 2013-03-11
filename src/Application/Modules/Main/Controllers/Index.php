@@ -28,81 +28,60 @@ class Index extends \Saros\Application\Controller
             ->order(array("day" => "DESC"))
             ->limit(1);
 
-        $this->view->LastDay = $mostRecent->execute()[0]->day;
+        $result = $mostRecent->execute();
+
+        if (!count($result)) {
+            die("No Data, please update");
+        }
+
+        $this->view->LastDay = $result[0]->day;
 
         $this->view->Data = $this->storage["personal"];
     }
 
     public function updateAction() {
-        $this->getSleepAction();
+        $this->view->headScripts()->appendPageFile("js/Index/update.js");
+
+        $updater = new \Application\Classes\Updater($this->storage["personal"]->{"encodedId"});
+        $totalUpdated = $updater->buildQueue();
+
+        $this->view->TotalToUpdate = $totalUpdated;
+        //$this->getSleepAction();
     }
 
-    public function getSleepAction() {
-        $results = json_decode( $GLOBALS["registry"]->fitbitService->request( 'user/-/sleep/minutesAsleep/date/today/3m.json') );
-        $daysData = $results->{"sleep-minutesAsleep"};
+    public function processAction() {
+        header('Content-type: application/json');
+        $this->view->show(false);
+        $updater = new \Application\Classes\Updater($this->storage["personal"]->{"encodedId"});
+        $result = $updater->processQueue(3);
 
-        $totalValid = 0;
-        $totalUpdated = 0;
-
-        foreach($daysData as $dayData)
+        if (!$result) {
+            // Nothing left in the queue
+            http_response_code(204);
+        }
+        else
         {
-            if ($dayData->{"value"} > 0) {
-                $totalValid++;
-
-                // Check if this is already in the database
-                $current = $this->registry->mapper->first(
-                    '\Application\Entities\SleepDays',
-                    array (
-                        "userid" => $this->storage["personal"]->{"encodedId"},
-                        "day" => $dayData->{"dateTime"}
-                    )
-                );
-
-                if (!$current) {
-                    $totalUpdated++;
-                    // It's not, add it
-
-                    $detailed = $this->getDaySleep($dayData->{"dateTime"});
-
-                    $dayId = $GLOBALS["registry"]->mapper->insert(
-                        '\Application\Entities\SleepDays',
-                        array(
-                            "userid" => $this->storage["personal"]->{"encodedId"},
-                            "day" => $dayData->{"dateTime"},
-                            "awakeningsCount" => $detailed->{"awakeningsCount"},
-                            "timeInBed" => $detailed->{"timeInBed"},
-                            "efficiency" => $detailed->{"efficiency"},
-                            "minutesToFallAsleep" => $detailed->{"minutesToFallAsleep"},
-                        )
-                    );
-
-                    foreach($detailed->{"minuteData"} as $minute){
-                        $GLOBALS["registry"]->mapper->insert(
-                            '\Application\Entities\SleepMinutes',
-                            array(
-                                "sleepdayid" => $dayId,
-                                "minute" => $minute->{"dateTime"},
-                                "value" => $minute->{"value"}
-                            )
-                        );
-                    }
-                }
-            }
+            echo json_encode(array("processed" => count($result), "results" => $result));
         }
-
-        $this->view->TotalValid = $totalValid;
-        $this->view->TotalUpdated = $totalUpdated;
     }
 
-    private function getDaySleep($day) {
-        $results = json_decode($GLOBALS["registry"]->fitbitService->request('user/-/sleep/date/'.$day.'.json'));
-
-        // We only care about the main sleep
-        foreach($results->{"sleep"} as $sleep) {
-            if ($sleep->{"isMainSleep"}){
-                return $sleep;
-            }
+    public function testAction() {
+        header('Content-type: application/json');
+        $this->view->show(false);
+        if (!isset($_SESSION["nums"]))
+        {
+            $_SESSION["nums"] = 0;
         }
+        else if ($_SESSION["nums"] > 10) {
+            http_response_code(204);
+            die();
+        }
+        echo json_encode(array("num" => $_SESSION["nums"]++));
+    }
+
+    public function resetTestAction() {
+        $this->view->show(false);
+        $_SESSION["nums"] = 0;
     }
 
     public function graphAction() {
