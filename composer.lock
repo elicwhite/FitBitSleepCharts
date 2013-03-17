@@ -64,12 +64,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/TheSavior/Saros-Framework.git",
-                "reference": "7b55e1292d9d5bf1248cbe8f81f7229c0f891bd3"
+                "reference": "168b8e919a5ed8204c90e507d697117037cb36c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TheSavior/Saros-Framework/zipball/7b55e1292d9d5bf1248cbe8f81f7229c0f891bd3",
-                "reference": "7b55e1292d9d5bf1248cbe8f81f7229c0f891bd3",
+                "url": "https://api.github.com/repos/TheSavior/Saros-Framework/zipball/168b8e919a5ed8204c90e507d697117037cb36c4",
+                "reference": "168b8e919a5ed8204c90e507d697117037cb36c4",
                 "shasum": ""
             },
             "require": {
@@ -79,7 +79,9 @@
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "Saros": "lib/"
+                    "Saros": "lib/",
+                    "Test": "tests/",
+                    "Fixture": "tests/"
                 }
             },
             "license": [
@@ -102,7 +104,7 @@
                 "source": "https://github.com/TheSavior/Saros-Framework/tree/master",
                 "issues": "https://github.com/TheSavior/Saros-Framework/issues"
             },
-            "time": "2013-03-09 11:06:18"
+            "time": "2013-03-11 08:34:08"
         },
         {
             "name": "vlucas/Spot",
