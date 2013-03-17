@@ -37,9 +37,8 @@
                             <ul class="nav">
                                 <li class="active"><a href="<?php echo $GLOBALS["registry"]->utils->makeLink("Index")?>">Home</a></li>
                                 <li><a href="<?php echo $GLOBALS["registry"]->utils->makeLink("Index", "update")?>">Update</a></li>
-                                <li><a href="<?php echo $GLOBALS["registry"]->utils->makeLink("Index", "graph")?>">Chart</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="<?php echo $GLOBALS["registry"]->utils->makeLink("Index", "graph")?>">Charts</a></li>
+                                <li><a href="https://github.com/TheSavior/FitBitSleepCharts">Contribute</a></li>
                                 <li><a href="<?php echo $GLOBALS["registry"]->utils->makeLink("Index", "logout")?>">Logout</a></li>
                             </ul>
                         </div>

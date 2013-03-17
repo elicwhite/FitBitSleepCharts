@@ -18,7 +18,6 @@ class Index extends \Saros\Application\Controller
             $result = json_decode( $GLOBALS["registry"]->fitbitService->request( 'user/-/profile.json') );
             $this->storage["personal"] = $result->{"user"};
         }
-
     }
 
     public function indexAction() {
@@ -31,10 +30,12 @@ class Index extends \Saros\Application\Controller
         $result = $mostRecent->execute();
 
         if (!count($result)) {
-            die("No Data, please update");
+            $this->view->LastDay = false;
         }
-
-        $this->view->LastDay = $result[0]->day;
+        else
+        {
+            $this->view->LastDay = $result[0]->day;
+        }
 
         $this->view->Data = $this->storage["personal"];
     }
@@ -65,25 +66,6 @@ class Index extends \Saros\Application\Controller
         }
     }
 
-    public function testAction() {
-        header('Content-type: application/json');
-        $this->view->show(false);
-        if (!isset($_SESSION["nums"]))
-        {
-            $_SESSION["nums"] = 0;
-        }
-        else if ($_SESSION["nums"] > 10) {
-            http_response_code(204);
-            die();
-        }
-        echo json_encode(array("num" => $_SESSION["nums"]++));
-    }
-
-    public function resetTestAction() {
-        $this->view->show(false);
-        $_SESSION["nums"] = 0;
-    }
-
     public function graphAction() {
         $dayEntity = $this->registry->mapper->all(
             '\Application\Entities\SleepDays',
@@ -94,7 +76,7 @@ class Index extends \Saros\Application\Controller
 
         $days = array();
         foreach ($dayEntity as $day) {
-            $days[] = $day->day;
+            $days[] = $day;
         }
 
         $this->view->Days = $days;

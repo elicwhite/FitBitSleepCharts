@@ -8,7 +8,7 @@ $(function() {
         var graph = new Rickshaw.Graph.Ajax( {
             element: chart,
             width: 500,
-            height: 100,
+            height: 50,
             renderer: 'bar',
             dataURL: ROOT_URL+'/Index/getSleepJson/'+day,
             onData: function(d) {
@@ -30,8 +30,13 @@ $(function() {
                 var hoverDetail = new Rickshaw.Graph.HoverDetail( {
                     graph: graph,
                     formatter: function(series, x, y) {
+                        var type = 'asleep';
+                        if (parseInt(y) > 1) {
+                            type = 'awake';
+                        }
+
                         var date = '<span class="date">' + parseTime(new Date(x * 1000)) + '</span>';
-                        var content = series.name + ": " + parseInt(y) + '<br>' + date;
+                        var content = type +" at "+date;
                         return content;
                     }
                 });

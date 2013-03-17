@@ -76,6 +76,7 @@ class Updater
                 "timeInBed" => $detailed->{"timeInBed"},
                 "efficiency" => $detailed->{"efficiency"},
                 "minutesToFallAsleep" => $detailed->{"minutesToFallAsleep"},
+                "minutesAwake" => $detailed->{"minutesAwake"}
             );
 
             $dayId = $GLOBALS["registry"]->mapper->insert(

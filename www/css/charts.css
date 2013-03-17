@@ -1,6 +1,13 @@
 .sleepDay {
-    border: 1px solid black;
+    border: 1px solid #E0E0E0;
     overflow: hidden;
+    background-color: #FCFCFC;
+    margin-bottom: 15px;
+    padding: 5px;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 .sleepInfo {
@@ -12,11 +19,12 @@
     font-family: Arial, Helvetica, sans-serif;
     padding-bottom: 24px;
     width: 500px;
-    float:left;
+    float: left;
 }
 
 .rickshaw_graph .detail .x_label {
     display: none
+    color: black;
 }
 
 .rickshaw_graph .x_tick .title {

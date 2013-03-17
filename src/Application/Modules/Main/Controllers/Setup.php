@@ -5,7 +5,9 @@ class Setup extends \Saros\Application\Controller
 {
 
     public function init() {
-
+        if (isset($_SERVER["PRODUCTION"]) && $_SERVER["PRODUCTION"]) {
+            $this->redirect($GLOBALS["registry"]->utils->makeLink("Index"));
+        }
     }
 
 	public function indexAction()

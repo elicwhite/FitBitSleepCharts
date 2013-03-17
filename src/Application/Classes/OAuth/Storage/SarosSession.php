@@ -7,21 +7,18 @@ use \OAuth\Common\Token\TokenInterface;
 
 class SarosSession extends \Saros\Session implements TokenStorageInterface
 {
-    private $session;
-    private $sessionVariableName;
     private $tokenVariableName;
 
-    public function __construct($startSession = true, $sessionVariableName = 'fitbit_oauth_data', $tokenVariableName = 'oauth_token')
+    public function __construct($sessionVariableName = 'fitbit_oauth_data', $tokenVariableName = 'oauth_token')
     {
-        $this->session = new \Saros\Session($sessionVariableName);
-        $this->sessionVariableName = $sessionVariableName;
+        parent::__construct($sessionVariableName);
         $this->tokenVariableName = $tokenVariableName;
     }
 
     public function retrieveAccessToken()
     {
-        if (isset($this->session[$this->tokenVariableName])) {
-            return $this->session[$this->tokenVariableName];
+        if (isset($this->{$this->tokenVariableName})) {
+            return $this->{$this->tokenVariableName};
         }
 
         throw new TokenNotFoundException('Token not found in session, are you sure you stored it?');
@@ -29,7 +26,7 @@ class SarosSession extends \Saros\Session implements TokenStorageInterface
 
     public function storeAccessToken(TokenInterface $token)
     {
-        $this->session[$this->tokenVariableName] = $token;
+        $this->{$this->tokenVariableName} = $token;
     }
 
     /**
@@ -37,6 +34,6 @@ class SarosSession extends \Saros\Session implements TokenStorageInterface
     */
     public function hasAccessToken()
     {
-        return isset($this->session[$this->tokenVariableName]);
+        return isset($this->{$this->tokenVariableName});
     }
 }
