@@ -30,7 +30,37 @@
 ?>
 <div>
     <p class="lead text-center">
-        Hi, <?= $this->Data->displayName?> <br />
-        Go check out your sleep charts!
+        Hi, <?= $this->DisplayName?> <br />
+        Go check out your averages!
     </p>
+
+    <div class="avgBox">
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>Efficiency</th>
+                <th>Awakened</th>
+                <th>Fell asleep in</th>
+                <th>Time in bed</th>
+                <th>Minutes awake</th>
+            </tr>
+            <tr>
+                <td>Last 7 days of data</td>
+                <td><?=round($this->Last7->efficiency)?> %</td>
+                <td><?=round($this->Last7->awakeningsCount)?> times</td>
+                <td><?=round($this->Last7->minutesToFallAsleep)?> minutes</td>
+                <td><?=round($this->Last7->timeInBed)?> minutes</td>
+                <td><?=round($this->Last7->minutesAwake)?> minutes</td>
+            </tr>
+            <tr>
+                <td>All Time</td>
+                <td><?=round($this->AllTime->efficiency)?> %</td>
+                <td><?=round($this->AllTime->awakeningsCount)?> times</td>
+                <td><?=round($this->AllTime->minutesToFallAsleep)?> minutes</td>
+                <td><?=round($this->AllTime->timeInBed)?> minutes</td>
+                <td><?=round($this->AllTime->minutesAwake)?> minutes</td>
+            </tr>
+        </table>
+    </div>
+
 </div>

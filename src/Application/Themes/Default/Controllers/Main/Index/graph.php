@@ -20,6 +20,9 @@
             <div class="chart_container" data-day="<?= $day->day?>">
                 <div class="chart"></div>
             </div>
+            <div class="dateBox pull-right lead">
+                <?= date('M jS', strtotime($day->day)) ?></h3>
+            </div>
         </div>
       <?php
     }

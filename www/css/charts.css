@@ -23,11 +23,15 @@
 }
 
 .rickshaw_graph .detail .x_label {
-    display: none
+    display: none;
     color: black;
 }
 
 .rickshaw_graph .x_tick .title {
     bottom: -24px;
     left: -18px;
+}
+
+.dateBox {
+    margin: 5px;
 }

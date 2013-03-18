@@ -37,7 +37,32 @@ class Index extends \Saros\Application\Controller
             $this->view->LastDay = $result[0]->day;
         }
 
-        $this->view->Data = $this->storage["personal"];
+        $this->view->DisplayName = $this->storage["personal"]->{"displayName"};
+
+        // Get all time
+        $items = $this->registry->mapper->connection()->query(
+            "SELECT avg(awakeningsCount) AS awakeningsCount,
+                    avg(timeInBed) AS timeInBed,
+                    avg(efficiency) AS efficiency,
+                    avg(minutesToFallAsleep) AS minutesToFallAsleep,
+                    avg(minutesAwake) AS minutesAwake FROM sleepdays WHERE `userid` = :userid"
+                    ,array("userid" => $this->storage["personal"]->{"encodedId"})
+        );
+        $result = $items->fetch(\PDO::FETCH_OBJ);
+        $this->view->AllTime = $result;
+
+        // Get the last 7 days
+        $items = $this->registry->mapper->connection()->query(
+            "SELECT avg(awakeningsCount) AS awakeningsCount,
+                    avg(timeInBed) AS timeInBed,
+                    avg(efficiency) AS efficiency,
+                    avg(minutesToFallAsleep) AS minutesToFallAsleep,
+                    avg(minutesAwake) AS minutesAwake FROM (SELECT * FROM sleepdays WHERE `userid` = :userid ORDER BY day DESC LIMIT 7) AS tbl"
+                    ,array("userid" => $this->storage["personal"]->{"encodedId"})
+        );
+        $result = $items->fetch(\PDO::FETCH_OBJ);
+
+        $this->view->Last7 = $result;
     }
 
     public function updateAction() {

@@ -35,7 +35,7 @@
                     <div class="navbar-inner">
                         <div class="container">
                             <ul class="nav">
-                                <li class="active"><a href="<?php echo $GLOBALS["registry"]->utils->makeLink("Index")?>">Home</a></li>
+                                <li><a href="<?php echo $GLOBALS["registry"]->utils->makeLink("Index")?>">Home</a></li>
                                 <li><a href="<?php echo $GLOBALS["registry"]->utils->makeLink("Index", "update")?>">Update</a></li>
                                 <li><a href="<?php echo $GLOBALS["registry"]->utils->makeLink("Index", "graph")?>">Charts</a></li>
                                 <li><a href="https://github.com/TheSavior/FitBitSleepCharts">Contribute</a></li>
