@@ -23,7 +23,7 @@
         <?php
         }
         ?>
-        <button class="btn btn-primary pull-right" type="button">Update</button>
+        <button class="btn btn-primary pull-right" data-href="<?=$GLOBALS["registry"]->utils->makeLink("Index", "update")?>" type="button">Update</button>
     </div>
     <?php
     }
