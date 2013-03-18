@@ -10,7 +10,8 @@ $(function() {
 
     if ($("#progress").text() != $("#total").text()) {
         // Run async requests
-        doItems(6);
+        // Heroku can't handle processing more than one at a time.
+        doItems(1);
     }
     else
     {

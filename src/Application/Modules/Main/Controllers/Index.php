@@ -50,7 +50,7 @@ class Index extends \Saros\Application\Controller
         //$this->getSleepAction();
     }
 
-    public function processAction($num = 2) {
+    public function processAction($num = 3) {
         if (!is_int($num)) {
             die("Invalid parameter. Must be an integer");
         }
