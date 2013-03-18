@@ -50,11 +50,18 @@ class Index extends \Saros\Application\Controller
         //$this->getSleepAction();
     }
 
-    public function processAction() {
+    public function processAction($num = 2) {
+        if (!is_int($num)) {
+            die("Invalid parameter. Must be an integer");
+        }
+
+        $num = min($num, 3);
+        $num = max($num, 1);
+
         header('Content-type: application/json');
         $this->view->show(false);
         $updater = new \Application\Classes\Updater($this->storage["personal"]->{"encodedId"});
-        $result = $updater->processQueue(3);
+        $result = $updater->processQueue($num);
 
         if (!$result) {
             // Nothing left in the queue
