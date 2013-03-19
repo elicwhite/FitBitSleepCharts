@@ -23,4 +23,12 @@ class Setup extends \Saros\Application\Controller
         $this->registry->mapper->migrate('\Application\Entities\SleepDays');
         $this->registry->mapper->migrate('\Application\Entities\SleepMinutes');
     }
+
+    public function clearAction() {
+
+        $this->view->show(false);
+
+        $this->registry->mapper->truncateDatasource('\Application\Entities\SleepDays');
+        $this->registry->mapper->truncateDatasource('\Application\Entities\SleepMinutes');
+    }
 }
