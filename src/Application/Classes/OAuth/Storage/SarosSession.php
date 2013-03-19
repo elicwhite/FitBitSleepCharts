@@ -36,4 +36,12 @@ class SarosSession extends \Saros\Session implements TokenStorageInterface
     {
         return isset($this->{$this->tokenVariableName});
     }
+
+    /**
+    * Delete the users token. Aka, log out.
+    */
+    public function clearToken()
+    {
+        unset($this->{$this->tokenVariableName});
+    }
 }

@@ -8,15 +8,14 @@ use OAuth\Common\Http\Uri\Uri;
     */
 class Login extends \Saros\Application\Controller
 {
-    private $fitbitService;
+    private $fitbit;
 
     public function init() {
-        if($GLOBALS["registry"]->fitbitService->getStorage()->hasAccessToken()) {
+        $this->fitbit = $GLOBALS["registry"]->fitbit;
+        if($this->fitbit->isAuthorized()) {
             // If they aren't signed in, redirect them
             //$this->redirect($GLOBALS["registry"]->utils->makeLink("Index"));
         }
-
-        $this->fitbitService = $GLOBALS["registry"]->fitbitService;
     }
 
     public function indexAction()
@@ -25,19 +24,11 @@ class Login extends \Saros\Application\Controller
     }
 
     public function loginAction() {
-        $token = $this->fitbitService->requestRequestToken();
-
-        $url = $this->fitbitService->getAuthorizationUri(['oauth_token' => $token->getRequestToken()]);
-        $this->redirect($url);
+        $this->fitbit->initSession();
     }
 
     public function callbackAction() {
-        $token = $this->fitbitService->getStorage()->retrieveAccessToken();
-        // This was a callback request from fitbit, get the token
-        $this->fitbitService->requestAccessToken(
-            $_GET['oauth_token'],
-            $_GET['oauth_verifier'],
-            $token->getRequestTokenSecret() );
+        $this->fitbit->initSession();
 
         $this->redirect($GLOBALS["registry"]->utils->makeLink("Index", "info"));
     }

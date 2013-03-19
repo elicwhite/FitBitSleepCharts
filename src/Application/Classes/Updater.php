@@ -14,7 +14,7 @@ class Updater
     }
 
     public function buildQueue() {
-        $results = json_decode( $GLOBALS["registry"]->fitbitService->request( 'user/-/sleep/minutesAsleep/date/today/3m.json') );
+        $results = $GLOBALS["registry"]->fitbit->getTimeSeries("minutesAsleep", "today", "3m");
         $daysData = $results->{"sleep-minutesAsleep"};
 
         $totalToUpdate = 0;
@@ -102,7 +102,7 @@ class Updater
     }
 
     private function getDaySleep($day) {
-        $results = json_decode($GLOBALS["registry"]->fitbitService->request('user/-/sleep/date/'.$day.'.json'));
+        $results = $GLOBALS["registry"]->fitbit->getSleep(null, $day);
 
         // We only care about the main sleep
         foreach($results->{"sleep"} as $sleep) {

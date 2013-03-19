@@ -6,16 +6,16 @@ class Index extends \Saros\Application\Controller
     private $storage;
 
     public function init() {
-        $this->storage = $GLOBALS["registry"]->fitbitService->getStorage();
+        $this->storage = new \Saros\Session("storage");
 
-        if(!$this->storage->hasAccessToken()) {
+        if(!$GLOBALS["registry"]->fitbit->isAuthorized()) {
             // If they aren't signed in, redirect them
             $this->redirect($GLOBALS["registry"]->utils->makeLink("Login", "index"));
         }
 
         if (!isset($this->storage["personal"]))
         {
-            $result = json_decode( $GLOBALS["registry"]->fitbitService->request( 'user/-/profile.json') );
+            $result = $GLOBALS["registry"]->fitbit->getProfile();
             $this->storage["personal"] = $result->{"user"};
         }
     }
@@ -167,6 +167,7 @@ class Index extends \Saros\Application\Controller
     }
 
     public function logoutAction() {
+        $GLOBALS["registry"]->fitbit->resetSession();
         $this->storage->clear();
         $this->redirect($GLOBALS["registry"]->utils->makeLink("Index"));
     }
