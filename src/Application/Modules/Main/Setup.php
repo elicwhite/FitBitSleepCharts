@@ -35,9 +35,12 @@ class Setup
 	{
         session_start();
 
-        $serviceFactory = new \OAuth\ServiceFactory();
-
         $storage = new \Application\Classes\OAuth\Storage\SarosSession();
+
+
+        $registry->fitbit = new \Fitbit\Api($_SERVER["FITBIT_CLIENT"], $_SERVER["FITBIT_SECRET"], $registry->utils->makeLink("Login", "callback"), "json", $storage);
+
+        $serviceFactory = new \OAuth\ServiceFactory();
 
         // Setup the credentials for the requests
         $credentials = new \OAuth\Common\Consumer\Credentials(
