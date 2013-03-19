@@ -39,30 +39,15 @@ class Index extends \Saros\Application\Controller
 
         $this->view->DisplayName = $this->storage["personal"]->{"displayName"};
 
-        // Get all time
-        $items = $this->registry->mapper->connection()->query(
-            "SELECT avg(awakeningsCount) AS awakeningsCount,
-                    avg(timeInBed) AS timeInBed,
-                    avg(efficiency) AS efficiency,
-                    avg(minutesToFallAsleep) AS minutesToFallAsleep,
-                    avg(minutesAwake) AS minutesAwake FROM sleepdays WHERE `userid` = :userid"
-                    ,array("userid" => $this->storage["personal"]->{"encodedId"})
-        );
-        $result = $items->fetch(\PDO::FETCH_OBJ);
-        $this->view->AllTime = $result;
+        $sleepData = new \Application\Classes\AvgSleepData($this->registry->mapper, $this->storage["personal"]->{"encodedId"});
 
-        // Get the last 7 days
-        $items = $this->registry->mapper->connection()->query(
-            "SELECT avg(awakeningsCount) AS awakeningsCount,
-                    avg(timeInBed) AS timeInBed,
-                    avg(efficiency) AS efficiency,
-                    avg(minutesToFallAsleep) AS minutesToFallAsleep,
-                    avg(minutesAwake) AS minutesAwake FROM (SELECT * FROM sleepdays WHERE `userid` = :userid ORDER BY day DESC LIMIT 7) AS tbl"
-                    ,array("userid" => $this->storage["personal"]->{"encodedId"})
-        );
-        $result = $items->fetch(\PDO::FETCH_OBJ);
+        $data = array();
+        $data[] = array("title" => "Last 3 days of data", "data" => $sleepData->getAvgData(3));
+        $data[] = array("title" => "Last 7 days of data", "data" => $sleepData->getAvgData(7));
+        $data[] = array("title" => "All Time", "data" => $sleepData->getAvgData());
 
-        $this->view->Last7 = $result;
+        $this->view->Data = $data;
+
     }
 
     public function updateAction() {
@@ -72,7 +57,6 @@ class Index extends \Saros\Application\Controller
         $totalUpdated = $updater->buildQueue();
 
         $this->view->TotalToUpdate = $totalUpdated;
-        //$this->getSleepAction();
     }
 
     public function processAction($num = 3) {
@@ -170,5 +154,18 @@ class Index extends \Saros\Application\Controller
         $GLOBALS["registry"]->fitbit->resetSession();
         $this->storage->clear();
         $this->redirect($GLOBALS["registry"]->utils->makeLink("Index"));
+    }
+
+    public function testAction() {
+        $this->view->show(false);
+
+        //$tz = new \DateTimeZone('America/Los_Angeles');
+        $result = $GLOBALS["registry"]->fitbit->getSleep(new \DateTime());
+        //$result = new \DateTime("2013-03-19T04:02:00.000");
+        //$result->setTimezone($tz);
+
+        echo "<pre>";
+        echo var_dump($result);
+        echo "</pre>";
     }
 }

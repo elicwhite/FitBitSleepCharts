@@ -43,23 +43,24 @@
                 <th>Fell asleep in</th>
                 <th>Time in bed</th>
                 <th>Minutes awake</th>
+                <th>Start time deviation</th>
             </tr>
+            <?php
+                foreach($this->Data as $data)
+                {
+            ?>
             <tr>
-                <td>Last 7 days of data</td>
-                <td><?=round($this->Last7->efficiency)?> %</td>
-                <td><?=round($this->Last7->awakeningsCount)?> times</td>
-                <td><?=round($this->Last7->minutesToFallAsleep)?> minutes</td>
-                <td><?=round($this->Last7->timeInBed)?> minutes</td>
-                <td><?=round($this->Last7->minutesAwake)?> minutes</td>
+                <td><?= $data["title"]?></td>
+                <td><?=round($data["data"]->efficiency)?>%</td>
+                <td><?=round($data["data"]->awakeningsCount)?> times</td>
+                <td><?=round($data["data"]->minutesToFallAsleep)?> minutes</td>
+                <td><?= \Application\Classes\Utilities::formatTime($data["data"]->timeInBed) ?></td>
+                <td><?=round($data["data"]->minutesAwake)?> minutes</td>
+                <td><?= \Application\Classes\Utilities::formatTime($data["data"]->stdDevMin) ?></td>
             </tr>
-            <tr>
-                <td>All Time</td>
-                <td><?=round($this->AllTime->efficiency)?> %</td>
-                <td><?=round($this->AllTime->awakeningsCount)?> times</td>
-                <td><?=round($this->AllTime->minutesToFallAsleep)?> minutes</td>
-                <td><?=round($this->AllTime->timeInBed)?> minutes</td>
-                <td><?=round($this->AllTime->minutesAwake)?> minutes</td>
-            </tr>
+            <?php
+                }
+            ?>
         </table>
     </div>
 

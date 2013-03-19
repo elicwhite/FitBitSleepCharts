@@ -8,10 +8,23 @@ class Utilities
     *
     * @param mixed $minutes
     */
-    public static function convertTime($minutes) {
+    private static function convertTime($minutes) {
         $hours = floor($minutes / 60);
         $min = $minutes % 60;
 
         return array($hours, $min);
+    }
+
+    public static function formatTime($minutes) {
+        $time = self::convertTime($minutes);
+
+        $str = "";
+        if ($time[0] > 0) {
+            $str = $time[0]." hours, ";
+        }
+
+        $str .= $time[1]." minutes";
+
+        return $str;
     }
 }

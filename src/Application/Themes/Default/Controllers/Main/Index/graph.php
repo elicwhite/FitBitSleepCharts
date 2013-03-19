@@ -8,13 +8,13 @@
                     <li>Efficiency: <strong><?= $day->efficiency?>%</strong></li>
                     <li>Awakened: <?= $day->awakeningsCount ?> times</li>
                     <?php
-                        $time = \Application\Classes\Utilities::convertTime($day->timeInBed);
+                        $time = \Application\Classes\Utilities::formatTime($day->timeInBed);
                     ?>
-                    <li>Time In Bed: <?= $time[0] ?> hours, <?= $time[1] ?> minutes</li>
+                    <li>Time In Bed: <?= $time ?></li>
                     <?php
-                        $timeAsleep = \Application\Classes\Utilities::convertTime($day->timeInBed- $day->minutesAwake);
+                        $timeAsleep = \Application\Classes\Utilities::formatTime($day->timeInBed- $day->minutesAwake);
                     ?>
-                    <li>Time Asleep: <?= $timeAsleep[0] ?> hours, <?= $timeAsleep[1] ?> minutes</li></li>
+                    <li>Time Asleep: <?= $timeAsleep ?></li>
                 </ul>
             </div>
             <div class="chart_container" data-day="<?= $day->day?>">

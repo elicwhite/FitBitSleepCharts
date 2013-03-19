@@ -76,7 +76,8 @@ class Updater
                 "timeInBed" => $detailed->{"timeInBed"},
                 "efficiency" => $detailed->{"efficiency"},
                 "minutesToFallAsleep" => $detailed->{"minutesToFallAsleep"},
-                "minutesAwake" => $detailed->{"minutesAwake"}
+                "minutesAwake" => $detailed->{"minutesAwake"},
+                "startTime" => $detailed->{"startTime"}
             );
 
             $dayId = $GLOBALS["registry"]->mapper->insert(
@@ -102,6 +103,9 @@ class Updater
     }
 
     private function getDaySleep($day) {
+        if ($day == null) {
+            throw new \Exception("Day should never be null");
+        }
         $results = $GLOBALS["registry"]->fitbit->getSleep(null, $day);
 
         // We only care about the main sleep

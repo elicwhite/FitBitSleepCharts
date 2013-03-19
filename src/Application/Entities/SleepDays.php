@@ -15,7 +15,8 @@ class SleepDays extends \Spot\Entity
             'timeInBed' => array('type' => 'int'),
             'efficiency' => array('type' => 'int'),
             'minutesToFallAsleep' => array('type' => 'int'),
-            'minutesAwake' => array('type' => 'int')
+            'minutesAwake' => array('type' => 'int'),
+            'startTime' => array('type' => 'datetime')
         );
     }
 
