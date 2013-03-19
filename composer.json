@@ -1,9 +1,9 @@
 {
-    "name": "thesavior/Saros-Skeleton",
+    "name": "thesavior/FitBitSleepCharts",
     "version": "0.5",
     "type": "library",
-    "description": "Skeleton for use with the Saros PHP MVC Framework",
-    "homepage": "https://github.com/TheSavior/Saros-Skeleton",
+    "description": "App used to peruse fitbit data",
+    "homepage": "https://github.com/TheSavior/FitBitSleepCharts",
     "license" : "BSD",
     "minimum-stability": "dev",
     "authors" : [
@@ -14,9 +14,9 @@
         }
     ],
     "require": {
-        "php": ">=5.3.2",
+        "php": ">=5.4",
         "thesavior/Saros": "dev-master",
-        "lusitanian/oauth": "dev-master"
+        "thesavior/fitbitphp": "dev-master"
     },
     "repositories": [
         {
@@ -26,12 +26,7 @@
         {
             "type": "vcs",
             "url": "https://github.com/TheSavior/fitbitphp"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/Lusitanian/PHPoAuthLib"
         }
-
     ],
     "autoload": {
         "psr-0": { "Application": "src/" }

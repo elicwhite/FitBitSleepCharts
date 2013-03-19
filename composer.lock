@@ -1,5 +1,5 @@
 {
-    "hash": "5758cc5ff33e9714b5b057c54d554016",
+    "hash": "367f81b7b2d23dcc7ec36256bab468ac",
     "packages": [
         {
             "name": "lusitanian/oauth",
@@ -107,6 +107,40 @@
             "time": "2013-03-11 08:34:08"
         },
         {
+            "name": "thesavior/fitbitphp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TheSavior/fitbitphp.git",
+                "reference": "0e2eb5b1ed1e2101f02d328604b4a20c3dfd4605"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TheSavior/fitbitphp/zipball/0e2eb5b1ed1e2101f02d328604b4a20c3dfd4605",
+                "reference": "0e2eb5b1ed1e2101f02d328604b4a20c3dfd4605",
+                "shasum": ""
+            },
+            "require": {
+                "lusitanian/oauth": "dev-master",
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Fitbit": "lib/"
+                }
+            },
+            "description": "Fitbit library with OAuth",
+            "homepage": "https://github.com/thesavior/fitbitphp",
+            "keywords": [
+                "fitbit"
+            ],
+            "support": {
+                "source": "https://github.com/TheSavior/fitbitphp/tree/master"
+            },
+            "time": "2013-03-19 09:27:23"
+        },
+        {
             "name": "vlucas/Spot",
             "version": "0.9.2",
             "source": {
@@ -162,10 +196,10 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "thesavior/saros": 20,
-        "lusitanian/oauth": 20
+        "thesavior/fitbitphp": 20
     },
     "platform": {
-        "php": ">=5.3.2"
+        "php": ">=5.4"
     },
     "platform-dev": [
 
