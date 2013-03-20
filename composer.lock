@@ -1,5 +1,5 @@
 {
-    "hash": "367f81b7b2d23dcc7ec36256bab468ac",
+    "hash": "2eb44ebed1d0610be46c39b5a879915b",
     "packages": [
         {
             "name": "lusitanian/oauth",
@@ -107,17 +107,17 @@
             "time": "2013-03-11 08:34:08"
         },
         {
-            "name": "thesavior/fitbitphp",
+            "name": "thesavior/fitbit",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TheSavior/fitbitphp.git",
-                "reference": "bd077c63ccdf2da3f7f6d6fd9f94e7ed9f3672d3"
+                "reference": "df54a3c18a5f38dcbf1ba8d5a622d9cb2e13214d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TheSavior/fitbitphp/zipball/bd077c63ccdf2da3f7f6d6fd9f94e7ed9f3672d3",
-                "reference": "bd077c63ccdf2da3f7f6d6fd9f94e7ed9f3672d3",
+                "url": "https://api.github.com/repos/TheSavior/fitbitphp/zipball/df54a3c18a5f38dcbf1ba8d5a622d9cb2e13214d",
+                "reference": "df54a3c18a5f38dcbf1ba8d5a622d9cb2e13214d",
                 "shasum": ""
             },
             "require": {
@@ -130,15 +130,16 @@
                     "Fitbit": "lib/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
             "description": "Fitbit library with OAuth",
             "homepage": "https://github.com/thesavior/fitbitphp",
             "keywords": [
                 "fitbit"
             ],
-            "support": {
-                "source": "https://github.com/TheSavior/fitbitphp/tree/master"
-            },
-            "time": "2013-03-20 00:04:58"
+            "time": "2013-03-20 01:56:03"
         },
         {
             "name": "vlucas/Spot",
@@ -196,7 +197,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "thesavior/saros": 20,
-        "thesavior/fitbitphp": 20
+        "thesavior/fitbit": 20
     },
     "platform": {
         "php": ">=5.4"

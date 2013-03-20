@@ -16,16 +16,12 @@
     "require": {
         "php": ">=5.4",
         "thesavior/Saros": "dev-master",
-        "thesavior/fitbitphp": "dev-master"
+        "thesavior/fitbit": "dev-master"
     },
     "repositories": [
         {
             "type": "vcs",
             "url": "https://github.com/TheSavior/Saros-Framework"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/TheSavior/fitbitphp"
         }
     ],
     "autoload": {
