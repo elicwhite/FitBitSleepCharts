@@ -112,12 +112,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/TheSavior/fitbitphp.git",
-                "reference": "befa784483e7b27b5dea40149d792410ec30e2a0"
+                "reference": "bd077c63ccdf2da3f7f6d6fd9f94e7ed9f3672d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TheSavior/fitbitphp/zipball/befa784483e7b27b5dea40149d792410ec30e2a0",
-                "reference": "befa784483e7b27b5dea40149d792410ec30e2a0",
+                "url": "https://api.github.com/repos/TheSavior/fitbitphp/zipball/bd077c63ccdf2da3f7f6d6fd9f94e7ed9f3672d3",
+                "reference": "bd077c63ccdf2da3f7f6d6fd9f94e7ed9f3672d3",
                 "shasum": ""
             },
             "require": {
@@ -138,7 +138,7 @@
             "support": {
                 "source": "https://github.com/TheSavior/fitbitphp/tree/master"
             },
-            "time": "2013-03-19 20:36:47"
+            "time": "2013-03-20 00:04:58"
         },
         {
             "name": "vlucas/Spot",
