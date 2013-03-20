@@ -31,4 +31,12 @@ class Setup extends \Saros\Application\Controller
         $this->registry->mapper->truncateDatasource('\Application\Entities\SleepDays');
         $this->registry->mapper->truncateDatasource('\Application\Entities\SleepMinutes');
     }
+
+    public function deleteAction() {
+
+        $this->view->show(false);
+
+        $this->registry->mapper->dropDatasource('\Application\Entities\SleepDays');
+        $this->registry->mapper->dropDatasource('\Application\Entities\SleepMinutes');
+    }
 }
