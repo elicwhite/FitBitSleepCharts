@@ -4,6 +4,8 @@ FitBit SleepCharts
 A free open source solution to Fitbit's outrageous premium subscription model. Why pay $50+ a year for something so simple?
 Either find an installation of this, or simply deploy it yourself to heroku. Quick, easy, painless.
 
+A Live version is here: http://gentle-river-5868.herokuapp.com
+
 Sign up for a new fitbit api key.
 =================================
 https://dev.fitbit.com/apps/new
