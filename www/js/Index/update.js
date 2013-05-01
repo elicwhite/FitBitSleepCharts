@@ -36,6 +36,9 @@ $(function() {
             cache: false,
             statusCode: {
                 200: function(data) {
+                    if (!data.processed) {
+                        finished();
+                    }
                     increaseValue(data.processed);
                     $.each(data.results, function(index, item) {
                         logItem(item, thread);
@@ -72,7 +75,7 @@ $(function() {
     }
 
     function logItem(item, counter) {
-        console.log(item.day+ " == "+ counter);
+        //console.log(item.day+ " == "+ counter);
         $('.log').append(
             $('<li>').append(item.day)
         );
